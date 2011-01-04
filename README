@@ -1,0 +1,91 @@
+MagicGradient 
+version 0.1.0
+
+By Marty Vance
+27 July 2009
+
+License: GNU GPL v2: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+A plugin for jQuery javascript library
+
+DESCRIPTION
+
+MagicGradient applies a vertical gradient to the text of an element.  
+It does this by cloning the element's content N times,and applying 
+the CSS clip property and a color (from an Array) to each clone.
+
+Each clone is a direct child of the target element, and has the CSS 
+class 'magicGradient' in order to allow further scripting access.
+
+The number of clones equals the number of indices in the gradient 
+(see below).
+
+MagicGradient is made obsolete by the more robust and flexible CSS3
+gradient capabilities.
+
+ARGUMENTS
+
+MagicGradient accepts a single javascript object as an argument.  
+Available properties:
+
+* gradient: Array of color expressions (required)
+
+Other properties may be supported in the future.
+
+USAGE
+
+// chrome effect
+var clr = new Array('#2989CC', 
+                    '#2989CC', 
+                    '#4499D5', 
+                    '#6DB2E5', 
+                    '#9BCDF5', 
+                    '#C8E7FF', 
+                    '#ECF9FF', 
+                    '#FFFFFF', 
+                    '#AE7700', 
+                    '#DDA50C', 
+                    '#E8BC43', 
+                    '#F2D68B', 
+                    '#FAEED0', 
+                    '#FAEED0');
+
+$('h1').magicGradient({'gradient': clr});
+ 
+// two-tone effect
+$('a').magicGradient({'gradient': new Array('#bf2034', '#e3c390')});
+
+LIMITATIONS
+
+MagicGradient is a text effect; applying it to elements which have 
+block-level descendants will likely cause undesired results.  It will 
+happily preserve inline descendants (including links).
+
+MagicGradient does not apply to any child element's text-decoration.
+
+MagicGradient does not refresh "automagically" when a reflow event 
+occurs.
+
+Notes:
+A smoother transition of colors will always look better.  However, 
+fewer colors equals more speed.
+
+When applying to inline elements, it may be necessary to duplicate 
+the first and last colors in the array in order to display the full 
+range of colors.  This is because line-height is usually greater than 
+the height of the text.
+
+Due to how MagicGradient works, it can affect accessibility.  Text 
+selections can also behave strangely.
+
+Of course, IE6 doesn't always play nice.
+
+TODO:
+Put the original content in a container for hiding.  It can show 
+through as a ghost edge when anti-aliased, or when rounding errors 
+inside the browser result in imperfect alignment.
+
+Add a function to remove the gradient.
+
+Feedback is welcome.
+
